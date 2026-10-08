@@ -10,9 +10,9 @@ export default function PriceTicker() {
         {tickerProducts.map((product, index) => {
           const changeColor =
             product.changeType === "up"
-              ? "text-green-400"
+              ? "text-red-400"
               : product.changeType === "down"
-                ? "text-red-400"
+                ? "text-green-400"
                 : "text-gray-400";
 
           return (

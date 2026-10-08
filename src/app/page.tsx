@@ -20,7 +20,7 @@ export default function HomePage() {
           <div className="mb-7">
             <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
               আজ দাম বেড়েছে{" "}
-              <span className="text-green-600">▲</span>
+              <span className="text-red-600">▲</span>
             </h2>
 
             <p className="mt-2 text-gray-500">
@@ -36,7 +36,7 @@ export default function HomePage() {
           <div className="mb-7">
             <h2 className="text-2xl font-bold text-gray-900 md:text-3xl">
               আজ দাম কমেছে{" "}
-              <span className="text-red-600">▼</span>
+              <span className="text-green-600">▼</span>
             </h2>
 
             <p className="mt-2 text-gray-500">

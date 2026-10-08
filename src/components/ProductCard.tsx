@@ -9,9 +9,9 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const changeClass =
     product.changeType === "up"
-      ? "bg-green-100 text-green-700"
+      ? "bg-green-100 text-red-700"
       : product.changeType === "down"
-        ? "bg-red-100 text-red-700"
+        ? "bg-red-100 text-green-700"
         : "bg-gray-100 text-gray-600";
 
   return (
