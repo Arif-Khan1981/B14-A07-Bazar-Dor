@@ -1,0 +1,231 @@
+[
+  {
+    "id": 1,
+    "slug": "miniket-rice",
+    "name": "মিনিকেট চাল",
+    "emoji": "🍚",
+    "category": "চাল",
+    "categorySlug": "chal",
+    "description": "মানসম্মত মিনিকেট চালের আজকের বাজারদর।",
+    "unit": "প্রতি কেজি",
+    "price": 78,
+    "minPrice": 75,
+    "maxPrice": 82,
+    "averagePrice": 78,
+    "change": 2.1,
+    "changeType": "up",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 78,
+        "change": 2.1
+      },
+      {
+        "bazar": "মিরপুর বাজার",
+        "price": 80,
+        "change": 2.6
+      },
+      {
+        "bazar": "উত্তরা বাজার",
+        "price": 76,
+        "change": 1.8
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "potato",
+    "name": "আলু",
+    "emoji": "🥔",
+    "category": "সবজি",
+    "categorySlug": "sobji",
+    "description": "দেশি আলুর বর্তমান বাজারদর।",
+    "unit": "প্রতি কেজি",
+    "price": 35,
+    "minPrice": 32,
+    "maxPrice": 38,
+    "averagePrice": 35,
+    "change": -2.9,
+    "changeType": "down",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 35,
+        "change": -2.9
+      },
+      {
+        "bazar": "মিরপুর বাজার",
+        "price": 36,
+        "change": -2.1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "onion",
+    "name": "পেঁয়াজ",
+    "emoji": "🧅",
+    "category": "সবজি",
+    "categorySlug": "sobji",
+    "description": "দেশি পেঁয়াজের আজকের বাজারদর।",
+    "unit": "প্রতি কেজি",
+    "price": 90,
+    "minPrice": 85,
+    "maxPrice": 95,
+    "averagePrice": 90,
+    "change": 3.4,
+    "changeType": "up",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 90,
+        "change": 3.4
+      },
+      {
+        "bazar": "মিরপুর বাজার",
+        "price": 92,
+        "change": 3.8
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "egg",
+    "name": "ডিম",
+    "emoji": "🥚",
+    "category": "মাছ-মাংস",
+    "categorySlug": "mach-mangsho",
+    "description": "ফার্মের ডিমের বর্তমান বাজারদর।",
+    "unit": "প্রতি ডজন",
+    "price": 145,
+    "minPrice": 140,
+    "maxPrice": 150,
+    "averagePrice": 145,
+    "change": -1.5,
+    "changeType": "down",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 145,
+        "change": -1.5
+      },
+      {
+        "bazar": "মিরপুর বাজার",
+        "price": 148,
+        "change": -1.2
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "ilish",
+    "name": "ইলিশ মাছ",
+    "emoji": "🐟",
+    "category": "মাছ-মাংস",
+    "categorySlug": "mach-mangsho",
+    "description": "ইলিশ মাছের আজকের বাজারদর।",
+    "unit": "প্রতি কেজি",
+    "price": 1850,
+    "minPrice": 1700,
+    "maxPrice": 2000,
+    "averagePrice": 1850,
+    "change": 4.2,
+    "changeType": "up",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 1850,
+        "change": 4.2
+      },
+      {
+        "bazar": "মোহাম্মদপুর বাজার",
+        "price": 1900,
+        "change": 4.8
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "chicken",
+    "name": "ব্রয়লার মুরগি",
+    "emoji": "🍗",
+    "category": "মাছ-মাংস",
+    "categorySlug": "mach-mangsho",
+    "description": "ব্রয়লার মুরগির বর্তমান বাজারদর।",
+    "unit": "প্রতি কেজি",
+    "price": 190,
+    "minPrice": 185,
+    "maxPrice": 200,
+    "averagePrice": 190,
+    "change": -3.2,
+    "changeType": "down",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 190,
+        "change": -3.2
+      },
+      {
+        "bazar": "মিরপুর বাজার",
+        "price": 195,
+        "change": -2.7
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "garlic",
+    "name": "রসুন",
+    "emoji": "🧄",
+    "category": "মসলা",
+    "categorySlug": "moshla",
+    "description": "দেশি রসুনের আজকের বাজারদর।",
+    "unit": "প্রতি কেজি",
+    "price": 220,
+    "minPrice": 210,
+    "maxPrice": 230,
+    "averagePrice": 220,
+    "change": 1.7,
+    "changeType": "up",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 220,
+        "change": 1.7
+      },
+      {
+        "bazar": "মিরপুর বাজার",
+        "price": 225,
+        "change": 2
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "ginger",
+    "name": "আদা",
+    "emoji": "🫚",
+    "category": "মসলা",
+    "categorySlug": "moshla",
+    "description": "আদার বর্তমান বাজারদর।",
+    "unit": "প্রতি কেজি",
+    "price": 260,
+    "minPrice": 250,
+    "maxPrice": 280,
+    "averagePrice": 260,
+    "change": -2.3,
+    "changeType": "down",
+    "markets": [
+      {
+        "bazar": "কারওয়ান বাজার",
+        "price": 260,
+        "change": -2.3
+      },
+      {
+        "bazar": "মিরপুর বাজার",
+        "price": 265,
+        "change": -1.9
+      }
+    ]
+  }
+]
