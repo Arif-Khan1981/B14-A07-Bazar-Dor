@@ -1,17 +1,26 @@
-import { products } from "@/lib/products";
-import { formatChange, formatPrice } from "@/lib/utils";
+import { getAllProducts } from "@/lib/api-products";
+import {
+  formatChange,
+  formatPrice,
+  formatUnit,
+} from "@/lib/utils";
 
-export default function PriceTicker() {
-  const tickerProducts = [...products, ...products];
+export default async function PriceTicker() {
+  const products = await getAllProducts();
+
+  const tickerProducts = [
+    ...products,
+    ...products,
+  ];
 
   return (
     <div className="overflow-hidden bg-slate-950 text-white">
       <div className="ticker-track flex w-max gap-8 py-2">
         {tickerProducts.map((product, index) => {
           const changeColor =
-            product.changeType === "up"
+            product.change.dir === "up"
               ? "text-red-400"
-              : product.changeType === "down"
+              : product.change.dir === "down"
                 ? "text-green-400"
                 : "text-gray-400";
 
@@ -20,16 +29,25 @@ export default function PriceTicker() {
               key={`${product.id}-${index}`}
               className="flex items-center gap-2 whitespace-nowrap text-sm"
             >
-              <span>{product.emoji}</span>
+              <span>{product.image}</span>
 
               <span className="font-medium">
-                {product.name}
+                {product.nameBn}
               </span>
 
-              <span>{formatPrice(product.price)}</span>
+              <span>
+                {formatPrice(product.today)}
+              </span>
+
+              <span className="text-gray-400">
+                {formatUnit(product.unit)}
+              </span>
 
               <span className={changeColor}>
-                {formatChange(product.change)}
+                {formatChange(
+                  product.change.dir,
+                  product.change.pct
+                )}
               </span>
             </div>
           );

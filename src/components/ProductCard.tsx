@@ -1,37 +1,51 @@
 import Link from "next/link";
+
 import { Product } from "@/types/product";
-import { formatChange, formatPrice } from "@/lib/utils";
+
+import {
+  formatChange,
+  formatPrice,
+  formatUnit,
+} from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({
+  product,
+}: ProductCardProps) {
   const changeClass =
-    product.changeType === "up"
-      ? "bg-green-100 text-red-700"
-      : product.changeType === "down"
-        ? "bg-red-100 text-green-700"
+    product.change.dir === "up"
+      ? "bg-red-100 text-red-700"
+      : product.change.dir === "down"
+        ? "bg-green-100 text-green-700"
         : "bg-gray-100 text-gray-600";
 
   return (
     <Link
-      href={`/product/${product.slug}`}
+      href={`/product/${product.id}`}
       className="group block rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
-      {/* Product image / emoji */}
+      {/* Product image */}
       <div className="mb-5 flex h-36 items-center justify-center rounded-xl bg-gray-50 text-7xl transition group-hover:bg-green-50">
-        {product.emoji}
+        {product.image}
+      </div>
+
+      {/* Category */}
+      <div className="mb-2 flex items-center gap-1.5 text-xs text-gray-500">
+        <span>{product.categoryIcon}</span>
+        <span>{product.categoryNameBn}</span>
       </div>
 
       {/* Product name */}
       <h3 className="text-lg font-bold text-gray-900 transition group-hover:text-green-700">
-        {product.name}
+        {product.nameBn}
       </h3>
 
       {/* Unit */}
       <p className="mt-1 text-sm text-gray-500">
-        {product.unit}
+        {formatUnit(product.unit)}
       </p>
 
       {/* Price */}
@@ -42,7 +56,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </p>
 
           <p className="mt-1 text-xl font-bold text-gray-900">
-            {formatPrice(product.price)}
+            {formatPrice(product.today)}
           </p>
         </div>
 
@@ -50,7 +64,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         <span
           className={`rounded-full px-2.5 py-1 text-xs font-bold ${changeClass}`}
         >
-          {formatChange(product.change)}
+          {formatChange(
+            product.change.dir,
+            product.change.pct
+          )}
         </span>
       </div>
     </Link>

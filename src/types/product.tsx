@@ -1,25 +1,30 @@
-export type PriceChange = "up" | "down" | "flat";
+export type ChangeDirection = "up" | "down" | "flat";
 
-export interface MarketPrice {
-  bazar: string;
-  price: number;
-  change: number;
+export interface ProductChange {
+  dir: ChangeDirection;
+  pct: number;
+}
+
+export interface Market {
+  market: string;
+  division: string;
+  min: number;
+  max: number;
 }
 
 export interface Product {
   id: number;
   slug: string;
-  name: string;
-  emoji: string;
+  nameBn: string;
   category: string;
-  categorySlug: string;
-  description: string;
+  categoryNameBn: string;
+  categoryIcon: string;
   unit: string;
-  price: number;
-  minPrice: number;
-  maxPrice: number;
-  averagePrice: number;
-  change: number;
-  changeType: PriceChange;
-  markets: MarketPrice[];
+  image: string;
+  today: number;
+  yesterday: number;
+  lastWeek: number;
+  lastMonth: number;
+  change: ProductChange;
+  markets: Market[];
 }

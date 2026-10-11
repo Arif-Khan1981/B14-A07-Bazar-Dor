@@ -8,21 +8,36 @@ export function toBanglaNumber(value: number | string) {
 }
 
 export function formatPrice(price: number) {
-  return `${toBanglaNumber(
-    price.toLocaleString("en-IN")
-  )} টাকা`;
+  return `${toBanglaNumber(price.toLocaleString("en-IN"))} টাকা`;
 }
 
-export function formatChange(change: number) {
-  const absolute = Math.abs(change).toFixed(1);
+export function formatChange(
+  dir: "up" | "down" | "flat",
+  pct: number
+) {
+  const percentage = toBanglaNumber(
+    Math.abs(pct).toFixed(1)
+  );
 
-  if (change > 0) {
-    return `▲ ${toBanglaNumber(absolute)}%`;
+  if (dir === "up") {
+    return `▲ ${percentage}%`;
   }
 
-  if (change < 0) {
-    return `▼ ${toBanglaNumber(absolute)}%`;
+  if (dir === "down") {
+    return `▼ ${percentage}%`;
   }
 
-  return `—${toBanglaNumber("0.0")}%`;
+  return `— ${toBanglaNumber("0.0")}%`;
+}
+
+export function formatUnit(unit: string) {
+  if (unit === "kg") {
+    return "প্রতি কেজি";
+  }
+
+  if (unit === "litre") {
+    return "প্রতি লিটার";
+  }
+
+  return unit;
 }
