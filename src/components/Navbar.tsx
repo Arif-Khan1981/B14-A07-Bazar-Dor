@@ -1,3 +1,4 @@
+import AuthMenu from "@/components/AuthMenu";
 import Link from "next/link";
 
 import { getCategories } from "@/lib/api-products";
@@ -36,19 +37,20 @@ export default async function Navbar() {
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-2">
-            <Link
-              href="/sign-in"
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
-            >
-              সাইন ইন
-            </Link>
+              {/* <Link
+                href="/sign-in"
+                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+              >
+                সাইন ইন
+              </Link>
 
-            <Link
-              href="/sign-up"
-              className="rounded-lg bg-green-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-green-700"
-            >
-              সাইন আপ
-            </Link>
+              <Link
+                href="/sign-up"
+                className="rounded-lg bg-green-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-green-700"
+              >
+                সাইন আপ
+              </Link> */}
+              <AuthMenu />
           </div>
 
         </div>

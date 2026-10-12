@@ -1,126 +1,129 @@
 
 "use client";
 
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 export default function EditProfilePage() {
-  // Temporary demo data; Better Auth will provide real user data later.
-  const [name, setName] = useState("Ariful Islam");
-  const [email, setEmail] = useState("ariful@example.com");
-  const [message, setMessage] = useState("");
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  useEffect(() => {
+    if (session?.user.name) {
+      setName(session.user.name);
+    }
+  }, [session?.user.name]);
+
+  async function handleSubmit(
+    event: React.FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
+    setError("");
+    setSuccess("");
+    setLoading(true);
 
-    // UI demonstration only — nothing is saved to a database yet.
-    setMessage("ডেমো সফল! Better Auth যুক্ত হলে তথ্য সংরক্ষণ হবে।");
+    try {
+      const { error: updateError } =
+        await authClient.updateUser({ name: name.trim() });
+
+      if (updateError) {
+        setError(updateError.message || "নাম আপডেট করা যায়নি।");
+        return;
+      }
+
+      setSuccess("আপনার নাম সফলভাবে আপডেট হয়েছে।");
+      router.refresh();
+    } catch {
+      setError("সার্ভারে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (isPending) {
+    return <main className="p-8">লোড হচ্ছে...</main>;
+  }
+
+  if (!session) {
+    return (
+      <main className="p-8 text-center">
+        <p>প্রোফাইল সম্পাদনা করতে সাইন ইন করুন।</p>
+        <Link href="/sign-in" className="btn btn-primary mt-4">
+          সাইন ইন
+        </Link>
+      </main>
+    );
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 px-4 py-10">
-      <div className="mx-auto max-w-2xl">
-        <Link
-          href="/profile"
-          className="text-sm font-semibold text-green-700 hover:text-green-800"
-        >
-          ← প্রোফাইলে ফিরে যান
-        </Link>
+    <main className="min-h-screen bg-base-200 px-4 py-12">
+      <div className="mx-auto max-w-lg rounded-2xl bg-base-100 p-6 shadow">
+        <h1 className="mb-6 text-2xl font-bold">
+          প্রোফাইল সম্পাদনা
+        </h1>
 
-        <div className="mb-8 mt-6">
-          <p className="text-sm font-semibold text-green-700">
-            ACCOUNT SETTINGS
-          </p>
-
-          <h1 className="mt-2 text-3xl font-black text-gray-900">
-            প্রোফাইল সম্পাদনা
-          </h1>
-
-          <p className="mt-2 text-gray-500">
-            আপনার অ্যাকাউন্টের তথ্য পরিবর্তন করুন।
-          </p>
-        </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
-        >
-          {/* Name field */}
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label
-              htmlFor="name"
-              className="mb-2 block text-sm font-semibold text-gray-700"
-            >
+            <label className="label" htmlFor="name">
               আপনার নাম
             </label>
-
             <input
               id="name"
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="আপনার নাম লিখুন"
+              className="input input-bordered w-full"
               required
               minLength={2}
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+              maxLength={80}
             />
           </div>
 
-          {/* Email field */}
           <div>
-            <label
-              htmlFor="email"
-              className="mb-2 block text-sm font-semibold text-gray-700"
-            >
-              ইমেইল ঠিকানা
+            <label className="label" htmlFor="email">
+              ইমেইল
             </label>
-
             <input
               id="email"
               type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="name@example.com"
-              required
-              className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-green-600 focus:ring-2 focus:ring-green-100"
+              value={session.user.email}
+              className="input input-bordered w-full"
+              readOnly
             />
-
-            <p className="mt-2 text-xs text-gray-400">
-              বাস্তবে ইমেইল পরিবর্তনের নিয়ম Better Auth-এর সেটআপ অনুযায়ী
-              নির্ধারণ করতে হবে।
-            </p>
           </div>
 
-          {/* Demo message */}
-          {message && (
-            <div
-              role="status"
-              className="rounded-xl bg-green-50 p-4 text-sm text-green-800"
-            >
-              {message}
-            </div>
+          {error && (
+            <p role="alert" className="text-sm text-error">
+              {error}
+            </p>
           )}
 
-          {/* Buttons */}
-          <div className="flex flex-col gap-3 sm:flex-row">
+          {success && (
+            <p role="status" className="text-sm text-success">
+              {success}
+            </p>
+          )}
+
+          <div className="flex flex-wrap gap-3">
             <button
               type="submit"
-              className="rounded-xl bg-green-600 px-6 py-3 font-semibold text-white transition hover:bg-green-700"
+              className="btn btn-primary"
+              disabled={loading || name.trim().length < 2}
             >
-              পরিবর্তন সংরক্ষণ করুন
+              {loading ? "সংরক্ষণ হচ্ছে..." : "পরিবর্তন সংরক্ষণ"}
             </button>
 
-            <Link
-              href="/profile"
-              className="rounded-xl border border-gray-300 px-6 py-3 text-center font-semibold text-gray-700 transition hover:bg-gray-50"
-            >
-              বাতিল
+            <Link href="/profile" className="btn btn-ghost">
+              ফিরে যান
             </Link>
           </div>
-
-          <p className="text-xs text-gray-400">
-            বর্তমানে এটি শুধু UI ডেমো। কোনো তথ্য ডেটাবেসে সংরক্ষণ হচ্ছে না।
-          </p>
         </form>
       </div>
     </main>
