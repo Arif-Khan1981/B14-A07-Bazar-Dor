@@ -1,3 +1,39 @@
+1. Project Name:  Bazar dor
+
+2. Description: Bazar Dor is a platform for tracking and comparing daily market prices of essential goods, so people can shop with confidence.
+
+3. Tech used:
+    i) Next.js
+    ii) App router (Next.js)
+    iii) Tailwind CSS
+    iv) Typscript
+    v) BetterAuth
+
+4. Features:
+
+i) Daily Price Updates: 
+Shows current prices of essential items (vegetables, fruits, fish, meat, groceries) in one place, updated regularly.
+
+ii) Price Comparison: 
+Lets users compare prices of the same product across different markets, areas, or districts to find the best deal.
+
+iii) Price Trend
+
+iv) Latest Price (up/down) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
